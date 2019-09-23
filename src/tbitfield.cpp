@@ -95,7 +95,7 @@ int TBitField::operator==(const TBitField &bf) const // сравнение
 	{
 		for (int i = 0; i < MemLen; i++)
 		{
-			if (pMem[i] != bf.pMem[i])
+			 if (pMem[i] != bf.pMem[i])
 				return 0;
 		}
 		return 1;
