@@ -162,7 +162,16 @@ TBitField TBitField::operator~(void) // отрицание
 {
 	TBitField tmp(BitLen);
 	for (int i = 0; i < MemLen; i++)
-		tmp.pMem[i] = ~pMem[i];
+	{
+		if (GetBit(i) == 0)
+		{
+			tmp.SetBit(i);
+		}
+		else
+		{
+			tmp.ClrBit(i);
+		}
+    }
 	return tmp;
 }
 
