@@ -32,6 +32,8 @@ TBitField::~TBitField()
 	{
 		delete[] pMem;
 		pMem = NULL;
+		BitLen = 0;
+		MemLen = 0;
 	}
 }
 
@@ -95,7 +97,7 @@ int TBitField::operator==(const TBitField &bf) const // сравнение
 	{
 		for (int i = 0; i < MemLen; i++)
 		{
-			if (pMem[i] != bf.pMem[i])
+			 if (pMem[i] != bf.pMem[i])
 				return 0;
 		}
 		return 1;
@@ -159,8 +161,17 @@ TBitField TBitField::operator&(const TBitField &bf) // операция "и"
 TBitField TBitField::operator~(void) // отрицание
 {
 	TBitField tmp(BitLen);
-	for (int i = 0; i < MemLen; i++)
-		tmp.pMem[i] = ~pMem[i];
+	for (int i = 0; i < BitLen; i++)
+	{
+		if (GetBit(i) == 0)
+		{
+			tmp.SetBit(i);
+		}
+		else
+		{
+			tmp.ClrBit(i);
+		}
+    }
 	return tmp;
 }
 
